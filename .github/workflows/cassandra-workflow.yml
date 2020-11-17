@@ -3,11 +3,9 @@ name: Build Cassandra Connector
 on:
   push:
     paths:
-      - 'pom.xml'
       - 'debezium-connector-cassandra/**'
   pull_request:
     paths:
-      - 'pom.xml'
       - 'debezium-connector-cassandra/**'
 
 jobs:

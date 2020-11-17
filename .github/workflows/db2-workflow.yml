@@ -3,11 +3,9 @@ name: Build DB2 Connector
 on:
   push:
     paths:
-      - 'pom.xml'
       - 'debezium-connector-db2/**'
   pull_request:
     paths:
-      - 'pom.xml'
       - 'debezium-connector-db2/**'
 
 jobs:
