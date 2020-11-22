@@ -1,0 +1,30 @@
+name: Build Cassandra Connector
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Core
+        uses: actions/checkout@v2
+        with:
+          repository: debezium/debezium
+          path: core
+      - name: Commit messages in format DBZ-xxx
+          env:
+            BASE_REF: ${{ github.base_ref }}
+            TITTLE: git log --format'format:%s' refs/remotes/origin/$BASE_REF.. | tail -n +2 | grep -Ev '^(DBZ-[[:digit:]]+)'
+          run: |
+            ! git log --format='format:%s' refs/remotes/origin/$BASE_REF.. | tail -n +2 | grep -Ev '^(DBZ-[[:digit:]]+)'
+#      - name: Cache Maven Packages
+#        uses: actions/cache@v2
+#        with:
+#          path: ~/.m2/repository
+#          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+#          restore-keys: |
+#            ${{ runner.os }}-maven-
+#      - name: Build Debezium Core
+#        run: mvn clean install -f core/pom.xml -DskipTests -DskipITs -Dformat.formatter.goal=validate -Dformat.imports.goal=check
+#      - name: Check changes in Debezium Connector Cassandra
+#        run: mvn clean install -am -pl debezium-connector-cassandra
