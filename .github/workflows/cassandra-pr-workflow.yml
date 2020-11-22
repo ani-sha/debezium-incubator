@@ -12,11 +12,11 @@ jobs:
           repository: debezium/debezium
           path: core
       - name: Commit messages in format DBZ-xxx
-          env:
-            BASE_REF: ${{ github.base_ref }}
-            TITTLE: git log --format'format:%s' refs/remotes/origin/$BASE_REF.. | tail -n +2 | grep -Ev '^(DBZ-[[:digit:]]+)'
-          run: |
-            ! git log --format='format:%s' refs/remotes/origin/$BASE_REF.. | tail -n +2 | grep -Ev '^(DBZ-[[:digit:]]+)'
+        env:
+          BASE_REF: ${{ github.base_ref }}
+          TITTLE: git log --format'format:%s' refs/remotes/origin/$BASE_REF.. | tail -n +2 | grep -Ev '^(DBZ-[[:digit:]]+)'
+        run: |
+          ! git log --format='format:%s' refs/remotes/origin/$BASE_REF.. | tail -n +2 | grep -Ev '^(DBZ-[[:digit:]]+)'
 #      - name: Cache Maven Packages
 #        uses: actions/cache@v2
 #        with:
